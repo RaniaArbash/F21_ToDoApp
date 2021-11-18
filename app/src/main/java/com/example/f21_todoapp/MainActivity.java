@@ -14,6 +14,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -39,6 +41,12 @@ public class MainActivity extends AppCompatActivity {
         listOftoDo =  findViewById(R.id.simpleListView);
         TodoAdapter adapter = new TodoAdapter(this,allTodos);
         listOftoDo.setAdapter(adapter);
+        listOftoDo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+            }
+        });
 
         newToDoActivityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
@@ -76,6 +84,10 @@ public class MainActivity extends AppCompatActivity {
                 //
                  break;
              }
+             case R.id.recycler_list:{
+                 Intent intent = new Intent(this,ToDoList_RecyclerView_Activity.class);
+                 startActivity(intent);
+             }
          }
          return true;
     }
@@ -84,5 +96,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putParcelableArrayList("allToDos",allTodos);
+    }
+
+    public void add_task(View view) {
+
+        Intent intent = new Intent(this,AddTodoActivity.class);
+        //startActivity(intent);
+        newToDoActivityResultLauncher.launch(intent);
     }
 }

@@ -14,4 +14,6 @@ public class ToDOManager {
         allTodos.add(newTodo);
     }
 
+    // file system
+    // Room db
 }

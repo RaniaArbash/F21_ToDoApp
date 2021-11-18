@@ -11,6 +11,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.F21_ToDoApp">
         <activity
+            android:name=".ToDoList_RecyclerView_Activity"
+            android:exported="true" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"
+                />
+        </activity>
+        <activity
             android:name=".AddTodoActivity"
             android:exported="true" />
         <activity
