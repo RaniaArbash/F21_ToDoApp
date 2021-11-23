@@ -78,10 +78,13 @@ public class MainActivity extends AppCompatActivity {
          super.onOptionsItemSelected(item);
          switch (item.getItemId()){
              case R.id.add:{
-                Intent intent = new Intent(this,AddTodoActivity.class);
-               //startActivity(intent);
-                 newToDoActivityResultLauncher.launch(intent);
-                //
+//                Intent intent = new Intent(this,AddTodoActivity.class);
+//                startActivity(intent);
+//                 newToDoActivityResultLauncher.launch(intent);
+
+                 AddNewToDoFragment fragment = new AddNewToDoFragment();
+                 fragment.show(getSupportFragmentManager().beginTransaction(),"1");
+
                  break;
              }
              case R.id.recycler_list:{
@@ -100,8 +103,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void add_task(View view) {
 
-        Intent intent = new Intent(this,AddTodoActivity.class);
-        //startActivity(intent);
-        newToDoActivityResultLauncher.launch(intent);
+
+        AddNewToDoFragment fragment = new AddNewToDoFragment();
+        fragment.show(getSupportFragmentManager().beginTransaction(),"1");
+
+//        Intent intent = new Intent(this,AddTodoActivity.class);
+//        //startActivity(intent);
+//        newToDoActivityResultLauncher.launch(intent);
     }
 }

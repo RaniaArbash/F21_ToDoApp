@@ -8,9 +8,11 @@
         <entry key="app/src/main/res/layout-land/activity_add_todo.xml" value="0.1" />
         <entry key="app/src/main/res/layout-land/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout-square/activity_main.xml" value="0.17025641025641025" />
-        <entry key="app/src/main/res/layout/activity_add_todo.xml" value="0.17407407407407408" />
+        <entry key="app/src/main/res/layout/activity_add_todo.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_to_do_list_recycler_view.xml" value="0.1638888888888889" />
+        <entry key="app/src/main/res/layout/dialog_fragment.xml" value="0.15462962962962962" />
+        <entry key="app/src/main/res/layout/fragment_add_new_to_do.xml" value="0.2359375" />
         <entry key="app/src/main/res/layout/list_row_item.xml" value="0.21851851851851853" />
         <entry key="app/src/main/res/menu/todo_menu.xml" value="0.17407407407407408" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.26256410256410256" />
