@@ -17,6 +17,25 @@ public class ToDo implements Parcelable {
         date = in.readString();
     }
 
+
+    // Shopping _ Nov - 25 - 2021
+    @Override
+    public String toString() {
+        return task +" _ " + date;
+    }
+
+    public static ToDo fromString(String stringTask){
+        ToDo todo = new ToDo("","");
+        for (int i = 0; i<stringTask.toCharArray().length; i++){
+            if (stringTask.toCharArray()[i] == '_'){
+                String task = stringTask.substring(0, i - 1  );
+                String date = stringTask.substring(i + 1,stringTask.toCharArray().length );
+                todo = new ToDo(task,date);
+            }
+        }
+        return todo;
+    }
+
     public static final Creator<ToDo> CREATOR = new Creator<ToDo>() {
         @Override
         public ToDo createFromParcel(Parcel in) {

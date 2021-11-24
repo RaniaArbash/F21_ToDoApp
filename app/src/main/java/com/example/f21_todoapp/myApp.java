@@ -10,6 +10,7 @@ public class myApp extends Application {
         return manager;
     }
 
+    public StorageService storageService = new StorageService();
     private ToDOManager manager = new ToDOManager();
 
 }

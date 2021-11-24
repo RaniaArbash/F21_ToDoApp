@@ -21,16 +21,21 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-
+    StorageService storage;
     ListView listOftoDo;
     ActivityResultLauncher<Intent> newToDoActivityResultLauncher;
     ArrayList<ToDo> allTodos;
-
+    TodoAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        allTodos = ((myApp) getApplication()).getManager().getAllTodos();
+      //  allTodos = ((myApp) getApplication()).getManager().getAllTodos();
+        storage = ((myApp)getApplication()).storageService;
+
+        allTodos = storage.getAllTasks(MainActivity.this);
+
+
 //        if (savedInstanceState != null)
 //            allTodos = savedInstanceState.getParcelableArrayList("allToDos");
 //        else
@@ -39,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
       //  Intent intent = new Intent();
         listOftoDo =  findViewById(R.id.simpleListView);
-        TodoAdapter adapter = new TodoAdapter(this,allTodos);
+        adapter = new TodoAdapter(this,allTodos);
         listOftoDo.setAdapter(adapter);
         listOftoDo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -56,8 +61,9 @@ public class MainActivity extends AppCompatActivity {
                             if (result.getResultCode() == Activity.RESULT_OK){
                                 Intent data = result.getData();
                                 ToDo newTodo = data.getParcelableExtra("newToDo");
-
-                             //   allTodos.add(newTodo);
+                                storage.saveTask(MainActivity.this,newTodo);
+                                // MainActivity context = getApplicationContext
+                                //   allTodos.add(newTodo);
                                 adapter.notifyDataSetChanged();
                             }
                     }
@@ -78,18 +84,23 @@ public class MainActivity extends AppCompatActivity {
          super.onOptionsItemSelected(item);
          switch (item.getItemId()){
              case R.id.add:{
-//                Intent intent = new Intent(this,AddTodoActivity.class);
-//                startActivity(intent);
-//                 newToDoActivityResultLauncher.launch(intent);
+                Intent intent = new Intent(this,AddTodoActivity.class);
+                //startActivity(intent);
+                 newToDoActivityResultLauncher.launch(intent);
 
-                 AddNewToDoFragment fragment = new AddNewToDoFragment();
-                 fragment.show(getSupportFragmentManager().beginTransaction(),"1");
+//                 AddNewToDoFragment fragment = new AddNewToDoFragment();
+//                 fragment.show(getSupportFragmentManager().beginTransaction(),"1");
 
                  break;
              }
              case R.id.recycler_list:{
                  Intent intent = new Intent(this,ToDoList_RecyclerView_Activity.class);
                  startActivity(intent);
+             }
+             case R.id.deletetasks:{
+                 storage.resetAllTask(MainActivity.this);
+                 adapter.notifyDataSetChanged();
+                 // refresh the table
              }
          }
          return true;
@@ -107,8 +118,8 @@ public class MainActivity extends AppCompatActivity {
         AddNewToDoFragment fragment = new AddNewToDoFragment();
         fragment.show(getSupportFragmentManager().beginTransaction(),"1");
 
-//        Intent intent = new Intent(this,AddTodoActivity.class);
-//        //startActivity(intent);
-//        newToDoActivityResultLauncher.launch(intent);
+        Intent intent = new Intent(this,AddTodoActivity.class);
+        //startActivity(intent);
+        newToDoActivityResultLauncher.launch(intent);
     }
 }
