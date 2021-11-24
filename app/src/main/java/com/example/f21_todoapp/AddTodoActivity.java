@@ -25,7 +25,7 @@ public class AddTodoActivity extends AppCompatActivity {
     public void save_task(View view) {
         if (!task_text.getText().toString().isEmpty()){
             String task = task_text.getText().toString();
-            int month =  task_date.getMonth() + 1;
+            int month =  task_date.getMonth() + 1; // 0 and 11
             String date = task_date.getYear() +"-"+ month +"-" + task_date.getDayOfMonth();
             ToDo newTodo = new ToDo(task,date);
 

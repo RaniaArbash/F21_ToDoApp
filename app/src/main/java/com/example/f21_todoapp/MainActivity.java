@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         storage = ((myApp)getApplication()).storageService;
 
         allTodos = storage.getAllTasks(MainActivity.this);
-
+        ((myApp)getApplication()).appContext = this;
 
 //        if (savedInstanceState != null)
 //            allTodos = savedInstanceState.getParcelableArrayList("allToDos");
@@ -64,6 +64,9 @@ public class MainActivity extends AppCompatActivity {
                                 storage.saveTask(MainActivity.this,newTodo);
                                 // MainActivity context = getApplicationContext
                                 //   allTodos.add(newTodo);
+                                //adapter.notifyDataSetChanged();
+                                allTodos = storage.getAllTasks(MainActivity.this);
+                                adapter.toDos = allTodos;
                                 adapter.notifyDataSetChanged();
                             }
                     }
@@ -99,8 +102,10 @@ public class MainActivity extends AppCompatActivity {
              }
              case R.id.deletetasks:{
                  storage.resetAllTask(MainActivity.this);
+                 allTodos = storage.getAllTasks(MainActivity.this);
+                 allTodos = storage.getAllTasks(MainActivity.this);
+                 adapter.toDos = allTodos;
                  adapter.notifyDataSetChanged();
-                 // refresh the table
              }
          }
          return true;

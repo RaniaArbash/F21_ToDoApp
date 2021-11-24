@@ -89,7 +89,7 @@ String filename = "tasks.txt";
         int index = 0;
         for (int i = 0 ; i < stringFromTheFile.toCharArray().length ; i++){
             if (stringFromTheFile.toCharArray()[i] == '$'){
-                String fullTask = stringFromTheFile.substring(index, i - 1 );
+                String fullTask = stringFromTheFile.substring(index, i  );
                 list.add(ToDo.fromString(fullTask));
                 index = i + 1;
             }

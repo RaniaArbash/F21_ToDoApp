@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -20,7 +22,9 @@ TextView nodata_text;
         setContentView(R.layout.activity_to_do_list_recycler_view);
         nodata_text = findViewById(R.id.nodata_text);
         list_of_todo = findViewById(R.id.todo_list_recycler);
-        ArrayList<ToDo> allItems = ( (myApp)getApplication()).getManager().getAllTodos();
+       // ArrayList<ToDo> allItems = ( (myApp)getApplication()).getManager().getAllTodos();
+        Activity c = ((myApp)getApplication()).appContext;
+        ArrayList<ToDo> allItems = ( (myApp)getApplication()).storageService.getAllTasks(c);
         if (allItems.size() == 0){
             nodata_text.setVisibility(View.VISIBLE);
             nodata_text.setText("No Tasks!!!");
